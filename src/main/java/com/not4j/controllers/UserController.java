@@ -28,8 +28,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     @JsonView(UserView.Public.class)
     public Collection<User> getAllUsers() {
-        throw new NullPointerException();
-        //return userDao.findAll();
+        return userDao.findAll();
     }
 
     @RequestMapping(value = "/{userId}/trip", method = RequestMethod.GET)

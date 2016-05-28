@@ -1,5 +1,6 @@
 package com.not4j;
 
+import com.not4j.dao.TripDao;
 import com.not4j.dao.UserDao;
 import com.not4j.model.User;
 import org.junit.Assert;
@@ -55,6 +56,9 @@ public class UserIntegrationTest {
     private UserDao userDao;
 
     @Autowired
+    private TripDao tripDao;
+
+    @Autowired
     void setConverters(HttpMessageConverter<?>[] converters) {
 
         this.mappingJackson2HttpMessageConverter = Arrays.asList(converters).stream().filter(
@@ -68,6 +72,7 @@ public class UserIntegrationTest {
     public void setup() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
 
+        this.tripDao.deleteAllInBatch();
         this.userDao.deleteAllInBatch();
 
         this.user = userDao.save(new User("Login", "qwerty", "Name", 30));
