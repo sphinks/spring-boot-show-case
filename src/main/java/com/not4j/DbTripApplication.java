@@ -18,11 +18,12 @@ public class DbTripApplication {
 
 	@Bean
 	CommandLineRunner init(UserDao userDao) {
+        userDao.deleteAllInBatch();
 		return (evt) -> Arrays.asList(
 			"jhoeller,dsyer,pwebb,ogierke,rwinch,mfisher,mpollack,jlong".split(","))
 			.forEach(
 					a -> {
-						User account = userDao.save(new User(a, a, 30));
+						User account = userDao.save(new User(a, "qwerty", a, 30));
 					});
 	}
 }

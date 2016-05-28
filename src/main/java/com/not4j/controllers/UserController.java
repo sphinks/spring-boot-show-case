@@ -2,6 +2,7 @@ package com.not4j.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.not4j.dao.UserDao;
+import com.not4j.json.views.UserView;
 import com.not4j.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping(method = RequestMethod.GET)
+    @JsonView(UserView.Public.class)
     Collection<User> getAllUsers() {
         return userDao.findAll();
     }

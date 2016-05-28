@@ -70,7 +70,7 @@ public class UserIntegrationTest {
 
         this.userDao.deleteAllInBatch();
 
-        this.user = userDao.save(new User("Login", "Name", 30));
+        this.user = userDao.save(new User("Login", "qwerty", "Name", 30));
     }
 
     @Test
