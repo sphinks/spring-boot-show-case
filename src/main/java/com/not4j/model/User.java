@@ -3,9 +3,10 @@ package com.not4j.model;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.not4j.json.views.UserView;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @Author: ivan
@@ -27,6 +28,8 @@ public class User {
     private String name;
     @JsonView(UserView.Public.class)
     private Integer age;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Trip> trips = new HashSet<>();
 
     public User() {
     }
@@ -76,5 +79,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Set<Trip> trips) {
+        this.trips = trips;
     }
 }

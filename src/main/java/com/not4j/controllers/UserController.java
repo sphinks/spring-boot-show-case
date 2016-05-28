@@ -3,8 +3,10 @@ package com.not4j.controllers;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.not4j.dao.UserDao;
 import com.not4j.json.views.UserView;
+import com.not4j.model.Trip;
 import com.not4j.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,13 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     @JsonView(UserView.Public.class)
-    Collection<User> getAllUsers() {
-        return userDao.findAll();
+    public Collection<User> getAllUsers() {
+        throw new NullPointerException();
+        //return userDao.findAll();
+    }
+
+    @RequestMapping(value = "/{userId}/trip", method = RequestMethod.GET)
+    public Collection<Trip> getAllTripsByUser(@PathVariable Long userId) {
+        return userDao.findOne(userId).getTrips();
     }
 }
