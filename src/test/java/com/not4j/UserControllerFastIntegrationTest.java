@@ -1,6 +1,5 @@
 package com.not4j;
 
-import com.not4j.controllers.UserController;
 import com.not4j.dao.TripDao;
 import com.not4j.dao.UserDao;
 import com.not4j.model.User;
@@ -38,7 +37,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DbTripApplication.class)
 @WebAppConfiguration
-public class UserUnitTest {
+public class UserControllerFastIntegrationTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
@@ -89,7 +88,7 @@ public class UserUnitTest {
 
     @Test
     public void readAllUsers() throws Exception {
-        mockMvc.perform(get("/user"))
+        mockMvc.perform(get("/v1/user"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.[0].userId", is(this.user.getUserId().intValue())));

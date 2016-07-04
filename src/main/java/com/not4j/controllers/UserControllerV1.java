@@ -19,8 +19,8 @@ import java.util.Collection;
  * Time: 20:12
  */
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/v1/user")
+public class UserControllerV1 {
 
     @Autowired
     private UserDao userDao;

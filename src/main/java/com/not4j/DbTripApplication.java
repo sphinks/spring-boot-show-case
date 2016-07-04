@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 @SpringBootApplication
 public class DbTripApplication {
@@ -32,7 +33,7 @@ public class DbTripApplication {
 			.forEach(
 					a -> {
                         try {
-                            User user = userDao.save(new User(a, "qwerty", a, 30));
+                            User user = userDao.save(new User(a, "qwerty", a, new Random().nextInt(60)));
                             DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
                             Trip trip = tripDao.save(new Trip(user, "Moscow",
                                     format.parse("January 2, 2017"),
